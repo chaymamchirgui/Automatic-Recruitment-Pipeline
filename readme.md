@@ -1,22 +1,12 @@
- Automatic Recruitment Pipeline:
+ Here's a brief breakdown:
 
-For this test you are asked to make a Flask app with one route that connects to a Google Sheets Spreadsheet on your Gmail account and then, depending on the values of some columns, will do different tasks.
+Functionality: The Flask application connects to Gmail and checks a Google Sheet ("flasksheet"). It iterates through the rows in the sheet, updating the status and sending different email responses based on certain conditions.
 
-The Spreadsheet should have the following structure: 
+Email Responses: It sends different emails like "Online Test Sent," "Reminder Sent," "Refusal Mail Sent," and "Interview Mail Sent" based on the status and other criteria in the spreadsheet.
 
-ID
-Email
-Project
-Status
-Mail sent
-Test Score
-1
-username@mail.com
-name_1
-Submitted Test
-dd/mm/yyyy hh:mm:ss
-34/50
+Handling Exceptions: It handles exceptions and sends appropriate emails like "bug Mail" in case of an error and a "confirmation Mail" after processing the spreadsheet.
 
+Assertions and Validations: The other file conducts various validations and assertions on the Google Sheet data, ensuring the correctness of information, email formats, and unique IDs for emails.
 
 Status can be one of the following (Ordered): 
 Applied
@@ -26,24 +16,9 @@ Reminder Sent
 Interview Mail Sent
 Refusal Mail Sent
 
-ID, Email, Project and Status are required while Test Score is optional.
-Test Score will only appear starting from “Submitted Test” and appears in the following format: “score/total”.
-Mail sent takes into account only emails sent from Datagram to the users.
-Mail sent will only appear starting from “Online Test Sent”.
-For simplicity, suppose there are 3 possible values for Project: name_1, name_2, name_3
-
-You will create a spreadsheet and feed it random rows.
-
 Your flask app will then do the following once the route has been pinged: 
 
-1- Connect to gmail (use your own gmail, be sure to remove your credentials afterwards and not to commit it to github)
-2- Open the spreadsheet (again, from your own Drive)
-3- Assert that there are no critical errors (from the constraints listed above)
-4- For each row, do one of the following: 
-If Status is Applied
-→ Send an email saying “Thank you for applying to [Project].”
-→ Change Status to Online Test Sent
-→ Change Mail sent to today’s datetime.
+
 
 If Status is Online Test Sent & Mail sent is at least 7 days old & Test Score is empty
 → Send an email saying “You haven’t submitted your test. Everything okay?”
